@@ -167,6 +167,32 @@
         }
 
         /* Responsive styles */
+
+
+        @media (max-width: 992px) {
+            .container {
+                /* padding-left: 440px;*/
+                margin-left: 10px;
+                min-width: 600px;
+                /* Adjust for smaller screens */
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            /* .side-zone {
+                grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
+            } */
+
+            .clickable-box {
+                width: 16px;
+                height: 23px;
+                font-size: 8px;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 /* padding-left: 200px; */
