@@ -151,10 +151,16 @@
 
         .input-con {
             width: 180px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            height: 50px; /* Adjust the height to accommodate 3 lines */
+            resize: none; /* Prevent resizing */
+            font-family: 'Sarabun', sans-serif;
         }
+        
+        .input-con-textarea {
+            width: 150px;
 
+        }
+        
         .input-con-bot {
             border: none;
             border-radius: 4px;
@@ -278,7 +284,8 @@
         <div class="message blue">800 บาท</div>
         <div class="message pink">500 บาท</div>
         <div class="input-con">
-            <input type="text" id="seatInput" placeholder="Seat">
+            <textarea class="input-con-textarea" type="text" id="seatInput" placeholder="Seat"></textarea>
+            <input type="text" placeholder="Name">
             <button class="input-con-bot">Submit</button>
         </div>
     </div>
