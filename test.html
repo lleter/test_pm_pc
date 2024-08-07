@@ -277,7 +277,7 @@
         <div class="message yellow">VVIP</div>
         <div class="message blue">800 บาท</div>
         <div class="message pink">500 บาท</div>
-        <input class="input-con" type="text">
+        <input class="input-con" type="text" id="seatInput>
         <button class="input-con-bot">Submit</button>
     </div>
     <div class="seat-info" id="seatInfo">Seat Information</div>
@@ -320,7 +320,7 @@
                 box.className = 'clickable-box';
                 box.innerText = `${letter}${currentNumber}`;
                 box.dataset.number = currentNumber;
-                box.addEventListener('click', () => showSeatInfo(box.textContent));
+                box.addEventListener('click', () => toggleSeatSelection(box.textContent));
                 box.dataset.initialColor = boxColor; // Store the initial color
                 box.onclick = function () {
                     toggleColor(box);
@@ -333,13 +333,18 @@
             return currentNumber; // Return the next number to start with
         }
 
-        function showSeatInfo(seat) {
-            const seatInfo = document.getElementById('seatInfo');
-            seatInfo.textContent = `You clicked on seat: ${seat}`;
-            seatInfo.style.display = 'block';
-            setTimeout(() => {
-                seatInfo.style.display = 'none';
-            }, 3000);
+        function toggleSeatSelection(seat) {
+            if (selectedSeats.has(seat)) {
+                selectedSeats.delete(seat);
+            } else {
+                selectedSeats.add(seat);
+            }
+            updateSeatInput();
+        }
+
+        function updateSeatInput() {
+            const seatInput = document.getElementById('seatInput');
+            seatInput.value = Array.from(selectedSeats).join(', ');
         }
 
         function toggleColor(element) {
