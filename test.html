@@ -274,6 +274,9 @@
             }
         }
     </style>
+    <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+  <script src="config.js"></script>
+  <script src="sheets.js"></script>
 </head>
 
 <body>
@@ -285,7 +288,7 @@
         <div class="input-con">
             <textarea class="input-con-textarea" type="text" id="seatInput" placeholder="Seat"></textarea>
             <input type="text" placeholder="Name">
-            <button class="input-con-bot">Submit</button>
+            <button class="input-con-bot" onclick="submitData()">Submit</button>
         </div>
     </div>
 
@@ -364,6 +367,13 @@
             } else {
                 element.style.backgroundColor = 'red';
             }
+        }
+
+        function submitData() {
+          const seatData = selectedSeats.join(', ');
+          const timestamp = new Date().toLocaleString();
+          const values = [[timestamp, seatData]];
+          writeSheetData('YOUR_SPREADSHEET_ID', 'Sheet1!A1', values);
         }
 
         function createAllRows() {
