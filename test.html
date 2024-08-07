@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seat Layout with Row-Based Numbering</title>
+    <title>Vipit booking seat</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html,
         body {
-            height: 100%;
-            width: 100%;
+            height: auto;
+            width: auto;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #ffffff;
-            overflow: hidden;
+            font-family: 'Sarabun', sans-serif;
+            /* overflow: hidden; */
+            /* overflow: scroll; */
+            /* padding: auto; */
+            padding-left: auto;
+
+
         }
 
         .container {
@@ -27,20 +34,22 @@
             gap: 10px;
             padding: 50px;
             background-color: #ffffff00;
+            /* border: 1px solid #ddd; */
+            /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); */
             align-items: center;
-            position: relative;
+
         }
 
         .row {
             display: grid;
             gap: 35px;
             grid-template-columns: auto 1fr auto;
-            width: 100%;
         }
 
         .zone {
             display: grid;
             gap: 3px;
+            /*gap between box */
         }
 
         .clickable-box {
@@ -62,24 +71,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 200px;
             height: 80px;
             background-color: #ffffff;
             border: 1.5px solid #000;
             box-sizing: border-box;
-            margin: 0 auto;
+            margin: 0px auto 0;
         }
 
         .bottom-frame {
-            width: 100%;
+
+            width: 650px;
             height: 40px;
             background-color: #ffffff;
             border: 1.5px solid #000;
             box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin: 20px auto 0;
+            align-items: center;
         }
 
         .side-zone {
@@ -90,6 +98,7 @@
 
         .side-column {
             display: flex;
+            justify-content: space-evenly;
             flex-direction: column;
             gap: 10px;
         }
@@ -105,14 +114,18 @@
         }
 
         .message-container {
-            position: absolute;
-            right: 150px;
-            top: 50px;
+            position: relative;
+            right: -50px;
+            /* Distance from the right edge of the container */
+            top: -250px;
+            /* Adjust vertical position if needed */
             display: flex;
             flex-direction: column;
             gap: 10px;
             font-family: 'Sarabun', sans-serif;
             font-size: 14px;
+            width: 80px;
+
         }
 
         .message {
@@ -136,24 +149,13 @@
             color: black;
         }
 
-        .input-container {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .input-container input {
-            padding: 10px;
-            margin-bottom: 10px;
+        .input-con {
+            width: 180px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 200px;
-            font-family: 'Sarabun', sans-serif;
         }
 
-        .input-container button {
-            padding: 10px 20px;
+        .input-con-bot {
             border: none;
             border-radius: 4px;
             background-color: pink;
@@ -161,12 +163,8 @@
             font-family: 'Sarabun', sans-serif;
             font-size: 14px;
             cursor: pointer;
-        }
-
-        .input-container button:hover {
             background-color: #d48888;
         }
-
         .seat-info {
             position: absolute;
             bottom: 20px;
@@ -182,36 +180,87 @@
         }
 
         /* Responsive styles */
+
+
+        @media (max-width: 992px) {
+            .container {
+                /* padding-left: 440px;*/
+                margin-left: 10px;
+                min-width: 600px;
+                /* Adjust for smaller screens */
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            /* .side-zone {
+                grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
+            } */
+
+            .clickable-box {
+                width: 16px;
+                height: 23px;
+                font-size: 8px;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
-            }
-
-            .top-frame {
-                width: 100%;
-            }
-
-            .bottom-frame {
-                width: 100%;
+                /* padding-left: 200px; */
+                min-width: 600px;
+                /* Adjust for smaller screens */
+                margin-left: 368px;
+                margin-right: 20%;
             }
 
             .clickable-box {
                 width: 18px;
                 height: 26px;
                 font-size: 9px;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .row {
+            }
+
+            .message-container {
+                position: relative;
+                right: 180px;
+                /* Distance from the right edge of the container */
+                top: -250px;
+                /* Adjust vertical position if needed */
+                /* width: 250px; */
+            }
+
+            .bottom-frame {
                 display: flex;
-                flex-direction: column;
+                justify-content: space-between;
+                width: 500px;
+                height: 40px;
+                background-color: #ffffff;
+                border: 1.5px solid #000;
+                box-sizing: border-box;
+                margin: 0px auto 0;
                 align-items: center;
             }
 
-            .side-zone {
-                grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                /* padding-left: 440px;*/
+                margin-left: 900px;
+                min-width: 600px;
+                /* Adjust for smaller screens */
             }
+
+            .row {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            /* .side-zone {
+                grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
+            } */
 
             .clickable-box {
                 width: 16px;
@@ -221,32 +270,71 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container" id="layoutContainer"></div>
-
-    <!-- Message container -->
     <div class="message-container">
         <div class="message yellow">VVIP</div>
         <div class="message blue">800 บาท</div>
         <div class="message pink">500 บาท</div>
-        <div class="input-container">
-            <input type="text" id="seatInput" placeholder="Enter your text here">
-            <button>Submit</button>
+        <div class="input-con">
+            <input type="text" id="seatInput" placeholder="Seat">
+            <button class="input-con-bot">Submit</button>
         </div>
     </div>
 
+    <!-- Seat info container -->
+    <div class="seat-info" id="seatInfo">Seat Information</div>
+    </div>
     <script>
-        const selectedSeats = new Set();
+        // Define number of columns for each row
+        const rowDefinitions = [
+            { left: 0, center: 13, right: 0 },
+            { left: 0, center: 23, right: 0 },
+            { left: 0, center: 21, right: 0 },
+            { left: 0, center: 21, right: 0 },
+            { left: 4, center: 20, right: 4 },
+            { left: 5, center: 19, right: 5 },
+            { left: 6, center: 18, right: 6 },
+            { left: 6, center: 17, right: 6 },
+            { left: 7, center: 17, right: 7 },
+            { left: 8, center: 16, right: 8 },
+            { left: 8, center: 16, right: 8 },
+            { left: 8, center: 15, right: 8 },
+            { left: 8, center: 15, right: 8 },
+            { left: 8, center: 15, right: 8 },
+            { left: 8, center: 15, right: 8 },
+            { left: 7, center: 15, right: 7 },
+            { left: 7, center: 15, right: 7 },
+            { left: 6, center: 15, right: 6 },
+            { left: 5, center: 15, right: 5 }
+        ];
 
-        function createBoxes(container, count, startIndex, rowLetter, color) {
-            for (let i = 0; i < count; i++) {
+        // Array of starting letters for each row
+        const rowLetters = ['U', 'T', 'S', 'R', 'Q', 'P', 'N', 'M', 'L', 'K', 'J', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
+        const selectedSeats = new Set();
+        function createBoxes(container, columns, startNumber, letter, boxColor) {
+            container.innerHTML = ''; // Clear previous content
+
+            let currentNumber = startNumber;
+
+            // Create boxes for the specified number of columns
+            for (let col = 0; col < columns; col++) {
                 const box = document.createElement('div');
                 box.className = 'clickable-box';
-                box.style.backgroundColor = color;
-                box.textContent = `${rowLetter}${startIndex + i}`;
+                box.innerText = `${letter}${currentNumber}`;
+                box.dataset.number = currentNumber;
                 box.addEventListener('click', () => toggleSeatSelection(box.textContent));
+                box.dataset.initialColor = boxColor; // Store the initial color
+                box.onclick = function () {
+                    toggleColor(box);
+                };
+                box.style.backgroundColor = boxColor; // Apply the initial color to the box
                 container.appendChild(box);
+                currentNumber++;
             }
+
+            return currentNumber; // Return the next number to start with
         }
 
         function toggleSeatSelection(seat) {
@@ -261,6 +349,15 @@
         function updateSeatInput() {
             const seatInput = document.getElementById('seatInput');
             seatInput.value = Array.from(selectedSeats).join(', ');
+        }
+
+        function toggleColor(element) {
+            // Toggle color between red and the initial color
+            if (element.style.backgroundColor === 'red') {
+                element.style.backgroundColor = element.dataset.initialColor;
+            } else {
+                element.style.backgroundColor = 'red';
+            }
         }
 
         function createAllRows() {
@@ -312,6 +409,9 @@
                 const boxColor = index < 4 ? 'pink' : 'lightblue';
                 const centerBoxColor = (index === 12 || index === 13 || index === 14) ? 'yellow' : boxColor;
 
+
+
+
                 // Create and add the label (U, T, S, ...)
                 const leftZone = document.createElement('div');
                 leftZone.className = 'zone';
@@ -333,40 +433,20 @@
                 row.appendChild(rightZone);
 
                 layoutContainer.appendChild(row);
-            });
 
-            // Create bottom frame
-            const bottomFrame = document.createElement('div');
-            bottomFrame.className = 'bottom-frame';
-            layoutContainer.appendChild(bottomFrame);
+                if (index === 18) {
+                    const bottomFrame = document.createElement('div');
+                    bottomFrame.className = 'bottom-frame';
+                    centerZone.appendChild(bottomFrame);
+                    layoutContainer.appendChild(bottomFrame);
+                }
+            });
         }
 
-        const rowLetters = ['U', 'T', 'S', 'R', 'Q', 'P', 'O', 'N', 'M', 'L', 'K', 'J', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
-        const rowDefinitions = [
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 },
-            { left: 8, center: 16, right: 8 }
-        ];
-
         createAllRows();
+
+
     </script>
 </body>
+
 </html>
